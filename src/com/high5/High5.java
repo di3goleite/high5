@@ -11,7 +11,7 @@ public class High5 {
     public static void main(String[] args) throws IOException {
         File file = new File();
 
-        Scanner fileInstance = file.open("assets/while.txt");
+        Scanner fileInstance = file.open("assets/while.h5");
 
         ArrayList<String> output = file.read(fileInstance);
         System.out.println(output);
