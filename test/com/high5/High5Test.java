@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class MainTest {
+public class High5Test {
     @Test
     public void helloWorld() {
         Assert.assertTrue(true);
