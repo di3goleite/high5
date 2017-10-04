@@ -2,7 +2,6 @@ package com.high5.util;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -12,12 +11,12 @@ public class File {
         return (new Scanner(new FileReader(path))).useDelimiter("//z");
     }
 
-    public ArrayList<String> read(Scanner file) {
-        ArrayList<String> output = new ArrayList<>();
+    public String read(Scanner file) {
+        StringBuilder output = new StringBuilder();
 
         try {
             while(file.hasNext()) {
-                output.add(file.next());
+                output.append(file.next());
             }
         }
         catch(NoSuchElementException e) {
@@ -26,7 +25,7 @@ public class File {
             System.exit(1);
         }
 
-        return output;
+        return output.toString();
     }
 
     public void close(Scanner file) {
