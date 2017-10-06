@@ -28,10 +28,59 @@ public class High5 {
             if (ch != ' ' && ch != '\n' && ch != '\t') {
                 sb.append(ch);
             } else {
+                boolean tokenFound = false;
+
                 for(String str : RESERVED_WORDS) {
-                    Token token = new Token(str, "id");
+                    if(str.equals(sb.toString())) {
+                        tokenFound = true;
+                        Token token = new Token(sb.toString(), "Palavra reservada");
+                        System.out.println(token.getToken());
+                    }
+                }
+
+                if(!tokenFound) {
+                    for(String str : ARITHMETIC_OPERATORS) {
+                        if(str.equals(sb.toString())) {
+                            tokenFound = true;
+                            Token token = new Token(sb.toString(), "Operador Aritmético");
+                            System.out.println(token.getToken());
+                        }
+                    }
+                }
+
+                if(!tokenFound) {
+                    for(String str : RELATIONAL_OPERATORS) {
+                        if(str.equals(sb.toString())) {
+                            tokenFound = true;
+                            Token token = new Token(sb.toString(), "Operador Relacional");
+                            System.out.println(token.getToken());
+                        }
+                    }
+                }
+
+                if(!tokenFound) {
+                    for(String str : LOGIC_OPERATORS) {
+                        if(str.equals(sb.toString())) {
+                            tokenFound = true;
+                            Token token = new Token(sb.toString(), "Operador Lógico");
+                            System.out.println(token.getToken());
+                        }
+                    }
+                }
+
+                if(!tokenFound) {
+                    for(String str : DELIMITERS) {
+                        if(str.equals(sb.toString())) {
+                            tokenFound = true;
+                            Token token = new Token(sb.toString(), "Delimitador");
+                            System.out.println(token.getToken());
+                        }
+                    }
+                }
+
+                if(!tokenFound) {
+                    Token token = new Token(sb.toString(), "Identificador");
                     System.out.println(token.getToken());
-                    System.out.println("-------------");
                 }
 
                 sb.setLength(0);
