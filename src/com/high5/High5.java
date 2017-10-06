@@ -29,7 +29,7 @@ public class High5 {
         }
 
         System.out.println(rawOutput);
-        System.out.println("===============");
+        System.out.println("==============");
         boolean delimiterFound = false;
         String currentDelimiter = "";
 
@@ -45,11 +45,15 @@ public class High5 {
             if(!delimiterFound) {
                 lexeme.append(character);
             } else {
-                System.out.println(lexeme);
-                System.out.println("--------------");
+                if(lexeme.length() > 0) {
+                    System.out.println(lexeme);
+                    System.out.println("--------------");
+                }
+
                 System.out.println(currentDelimiter);
                 System.out.println("--------------");
                 lexeme.setLength(0);
+
                 delimiterFound = false;
                 currentDelimiter = "";
             }
