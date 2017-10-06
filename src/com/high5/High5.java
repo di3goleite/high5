@@ -31,11 +31,13 @@ public class High5 {
         System.out.println(rawOutput);
         System.out.println("===============");
         boolean delimiterFound = false;
+        String currentDelimiter = "";
 
         for(char character : rawOutput.toString().toCharArray()) {
             for(String delimiter : DELIMITERS) {
                 if(delimiter.charAt(0) == character) {
                     delimiterFound = true;
+                    currentDelimiter = delimiter;
                     break;
                 }
             }
@@ -45,8 +47,11 @@ public class High5 {
             } else {
                 System.out.println(lexeme);
                 System.out.println("--------------");
+                System.out.println(currentDelimiter);
+                System.out.println("--------------");
                 lexeme.setLength(0);
                 delimiterFound = false;
+                currentDelimiter = "";
             }
         }
 
