@@ -16,74 +16,37 @@ public class High5 {
         final String[] RELATIONAL_OPERATORS = {"!=", "=", "<", "<=", ">", ">="};
         final String[] LOGIC_OPERATORS = {"!", "&&", "||"};
         final String[] DELIMITERS = {";", ",", "(", ")", "[", "]", "{", "}", ":"};
-        final String[] SPACES = {" ", "\n", "\t"};
 
         File file = new File();
         Scanner fileInstance = file.open("assets/program.h5");
         String output = file.read(fileInstance);
 
-        StringBuilder sb = new StringBuilder();
+        StringBuilder rawOutput = new StringBuilder();
+        StringBuilder lexeme = new StringBuilder();
 
-        for(char ch : output.toCharArray()) {
-            if (ch != ' ' && ch != '\n' && ch != '\t') {
-                sb.append(ch);
+        for(String word : output.split("\\s+")) {
+            rawOutput.append(word);
+        }
+
+        System.out.println(rawOutput);
+        System.out.println("===============");
+        boolean delimiterFound = false;
+
+        for(char character : rawOutput.toString().toCharArray()) {
+            for(String delimiter : DELIMITERS) {
+                if(delimiter.charAt(0) == character) {
+                    delimiterFound = true;
+                    break;
+                }
+            }
+
+            if(!delimiterFound) {
+                lexeme.append(character);
             } else {
-                boolean tokenFound = false;
-
-                for(String str : RESERVED_WORDS) {
-                    if(str.equals(sb.toString())) {
-                        tokenFound = true;
-                        Token token = new Token(sb.toString(), "Palavra reservada");
-                        System.out.println(token.getToken());
-                    }
-                }
-
-                if(!tokenFound) {
-                    for(String str : ARITHMETIC_OPERATORS) {
-                        if(str.equals(sb.toString())) {
-                            tokenFound = true;
-                            Token token = new Token(sb.toString(), "Operador Aritmético");
-                            System.out.println(token.getToken());
-                        }
-                    }
-                }
-
-                if(!tokenFound) {
-                    for(String str : RELATIONAL_OPERATORS) {
-                        if(str.equals(sb.toString())) {
-                            tokenFound = true;
-                            Token token = new Token(sb.toString(), "Operador Relacional");
-                            System.out.println(token.getToken());
-                        }
-                    }
-                }
-
-                if(!tokenFound) {
-                    for(String str : LOGIC_OPERATORS) {
-                        if(str.equals(sb.toString())) {
-                            tokenFound = true;
-                            Token token = new Token(sb.toString(), "Operador Lógico");
-                            System.out.println(token.getToken());
-                        }
-                    }
-                }
-
-                if(!tokenFound) {
-                    for(String str : DELIMITERS) {
-                        if(str.equals(sb.toString())) {
-                            tokenFound = true;
-                            Token token = new Token(sb.toString(), "Delimitador");
-                            System.out.println(token.getToken());
-                        }
-                    }
-                }
-
-                if(!tokenFound) {
-                    Token token = new Token(sb.toString(), "Identificador");
-                    System.out.println(token.getToken());
-                }
-
-                sb.setLength(0);
+                System.out.println(lexeme);
+                System.out.println("--------------");
+                lexeme.setLength(0);
+                delimiterFound = false;
             }
         }
 
