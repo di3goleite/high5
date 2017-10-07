@@ -13,18 +13,18 @@ public class High5 {
     public static void main(String[] args) throws IOException {
 
         final String[] RESERVED_WORDS = {"class", "final", "if", "else", "for", "scan", "print", "int", "float", "bool", "true", "false", "string"};
-        final String[] ARITHMETIC_OPERATORS = {"+", "-", "*", "/", "%"};
+        final String[] ARITHMETIC_OPERATORS = {"\\+", "-", "\\*", "/", "%"};
         final String[] RELATIONAL_OPERATORS = {"!=", "=", "<", "<=", ">", ">="};
-        final String[] LOGIC_OPERATORS = {"!", "&&", "||"};
-        final String[] DELIMITERS = {";", ",", "(", ")", "[", "]", "{", "}", ":"};
+        final String[] LOGIC_OPERATORS = {"!", "\\&\\&", "\\|\\|"};
+        final String[] DELIMITERS = {";", ",", "\\(", "\\)", "\\[", "\\]", "\\{", "\\}", ":"};
 
-        List classes = new ArrayList();
+        List<String[]> classes = new ArrayList();
 
-        classes.add(RESERVED_WORDS);
-        classes.add(ARITHMETIC_OPERATORS);
-        classes.add(RELATIONAL_OPERATORS);
-        classes.add(LOGIC_OPERATORS);
-        classes.add(DELIMITERS);
+        classes.add(RESERVED_WORDS); // classes[0]
+        classes.add(ARITHMETIC_OPERATORS); // classes[1]
+        classes.add(RELATIONAL_OPERATORS); // classes[2]
+        classes.add(LOGIC_OPERATORS); // classes [3]
+        classes.add(DELIMITERS); // classes[4]
 
         File file = new File();
         Scanner fileInstance = file.open("assets/program.h5");
@@ -44,6 +44,8 @@ public class High5 {
 
         ArrayList<String> splittedWords = new ArrayList<String>();
 
+        // Antes de fazer essa modificação é importante analisar os casos
+        // das cadeias de caracteres através de expressões regulares
         for(char character : rawOutput.toString().toCharArray()) {
             for(String delimiter : DELIMITERS) {
                 if(delimiter.charAt(0) == character) {
@@ -69,9 +71,22 @@ public class High5 {
         }
 
         for(String word : splittedWords) {
-            System.out.println(word);
-            System.out.println("----------------");
+            for(String[] types : classes) {
+                for(String type : types) {
+                    String[] parts = word.split(type);
+
+                    if(parts.length > 1) {
+                        System.out.println(word);
+                        System.out.println("----");
+                        System.out.println(type);
+                        System.out.println("----------------");
+                    }
+                }
+            }
         }
+
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        System.out.println("hue hue".split(" ").length);
 
         fileInstance.close();
     }

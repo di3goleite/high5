@@ -1,5 +1,6 @@
 x = 0;
 
-if (x < 10) {
+if (x < 10 && 1 < 2) {
+    print("Valor de x");
     print(x);
 }
