@@ -12,4 +12,12 @@ public class Token {
     public String getToken() {
         return "<" + this.key + ", " + this.value + ">";
     }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
 }
