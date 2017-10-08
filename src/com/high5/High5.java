@@ -25,28 +25,7 @@ public class High5 {
         System.out.println(rawOutput);
 
         LinkedList<String> list = lex.parser(rawOutput, categories.DELIMITERS);
-        LinkedList<String> tempList;
-        int listSize = list.size();
-
-        System.out.println("==============");
-
-//        list = lex.parser(list, categories.ARITHMETIC_OPERATORS);
-//        list.add(1, "hue");
-
-        for(int i = 0; i < listSize ; i++) {
-            tempList = lex.parser(new StringBuilder(list.get(i)), categories.ARITHMETIC_OPERATORS);
-
-            if(tempList.size() > 1) {
-                list.remove(i);
-
-                for(int j = 0; j < tempList.size(); j++) {
-                    list.add(i + j, tempList.get(j));
-                }
-
-                i = i + tempList.size() - 1;
-                listSize = listSize + tempList.size() - 1;
-            }
-        }
+        list = lex.depthParser(list, categories.ARITHMETIC_OPERATORS);
 
         for(String word : list) {
             System.out.println(word);

@@ -55,4 +55,26 @@ public class LexicalAnalyzer {
         return list;
     }
 
+    public LinkedList<String> depthParser(LinkedList<String> list, String[] category) {
+        LinkedList<String> tempList;
+        int listSize = list.size();
+
+        for(int i = 0; i < listSize ; i++) {
+            tempList = this.parser(new StringBuilder(list.get(i)), category);
+
+            if(tempList.size() > 1) {
+                list.remove(i);
+
+                for(int j = 0; j < tempList.size(); j++) {
+                    list.add(i + j, tempList.get(j));
+                }
+
+                i = i + tempList.size() - 1;
+                listSize = listSize + tempList.size() - 1;
+            }
+        }
+
+        return list;
+    }
+
 }
