@@ -1,6 +1,7 @@
 package com.high5.model;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class LexicalAnalyzer {
 
@@ -14,8 +15,8 @@ public class LexicalAnalyzer {
         return rawOutput;
     }
 
-    public ArrayList<String> parse(StringBuilder rawOutput, String[] category) {
-        ArrayList<String> splittedWords = new ArrayList();
+    public LinkedList<String> parser(StringBuilder rawOutput, String[] category) {
+        LinkedList<String> list = new LinkedList();
 
         StringBuilder lexeme = new StringBuilder();
         String currentDelimiter = "";
@@ -35,10 +36,10 @@ public class LexicalAnalyzer {
                 lexeme.append(character);
             } else {
                 if(lexeme.length() > 0) {
-                    splittedWords.add(lexeme.toString());
+                    list.add(lexeme.toString());
                 }
 
-                splittedWords.add(currentDelimiter);
+                list.add(currentDelimiter);
                 lexeme.setLength(0);
 
                 delimiterFound = false;
@@ -46,6 +47,12 @@ public class LexicalAnalyzer {
             }
         }
 
-        return splittedWords;
+        if(lexeme.length() > 0) {
+            list.add(lexeme.toString());
+            lexeme.setLength(0);
+        }
+
+        return list;
     }
+
 }

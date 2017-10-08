@@ -6,6 +6,7 @@ import com.high5.util.File;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,12 +21,34 @@ public class High5 {
         Categories categories = new Categories();
 
         StringBuilder rawOutput = lex.removeSpaces(output);
-        ArrayList<String> splittedWords = lex.parse(rawOutput, categories.getDelimiters());
 
         System.out.println(rawOutput);
+
+        LinkedList<String> list = lex.parser(rawOutput, categories.DELIMITERS);
+        LinkedList<String> tempList;
+        int listSize = list.size();
+
         System.out.println("==============");
 
-        for(String word : splittedWords) {
+//        list = lex.parser(list, categories.ARITHMETIC_OPERATORS);
+//        list.add(1, "hue");
+
+        for(int i = 0; i < listSize ; i++) {
+            tempList = lex.parser(new StringBuilder(list.get(i)), categories.ARITHMETIC_OPERATORS);
+
+            if(tempList.size() > 1) {
+                list.remove(i);
+
+                for(int j = 0; j < tempList.size(); j++) {
+                    list.add(i + j, tempList.get(j));
+                }
+
+                i = i + tempList.size() - 1;
+                listSize = listSize + tempList.size() - 1;
+            }
+        }
+
+        for(String word : list) {
             System.out.println(word);
             System.out.println("--------");
         }
