@@ -14,14 +14,16 @@ public class LexicalAnalyzer {
         return rawOutput;
     }
 
-    public ArrayList<String> parse(StringBuilder rawOutput, String[] pattern) {
-        ArrayList<String> splittedWords = new ArrayList<String>();
+    public ArrayList<String> parse(StringBuilder rawOutput, String[] category) {
+        ArrayList<String> splittedWords = new ArrayList();
+
         StringBuilder lexeme = new StringBuilder();
         String currentDelimiter = "";
+
         boolean delimiterFound = false;
 
         for(char character : rawOutput.toString().toCharArray()) {
-            for(String delimiter : pattern) {
+            for(String delimiter : category) {
                 if(delimiter.charAt(0) == character) {
                     delimiterFound = true;
                     currentDelimiter = delimiter;

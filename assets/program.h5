@@ -1,9 +1,6 @@
 int x = 10;
 
 if (x >= 0 && 1 < 2) {
-    // Atualiza o valor de x
     x = x - 1;
-
-    print("Valor atual de x");
     print(x);
 }

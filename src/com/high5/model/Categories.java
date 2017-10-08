@@ -7,13 +7,13 @@ public class Categories {
 
     final String[] RESERVED_WORDS = {"class", "final", "if", "else", "for", "scan", "print", "int", "float", "bool", "true", "false", "string"};
 
-    final String[] ARITHMETIC_OPERATORS = {"\\+", "-", "\\*", "/", "%"};
+    final String[] ARITHMETIC_OPERATORS = {"+", "-", "*", "/", "%"};
 
     final String[] RELATIONAL_OPERATORS = {"!=", "=", "<", "<=", ">", ">="};
 
-    final String[] LOGIC_OPERATORS = {"!", "\\&\\&", "\\|\\|"};
+    final String[] LOGIC_OPERATORS = {"!", "&&", "||"};
 
-    final String[] DELIMITERS = {";", ",", "\\(", "\\)", "\\[", "\\]", "\\{", "\\}", ":"};
+    final String[] DELIMITERS = {";", ",", "(", ")", "[", "]", "{", "}", ":"};
 
     public String[] getReservedWords() {
         return this.RESERVED_WORDS;
