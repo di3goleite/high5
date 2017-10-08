@@ -29,6 +29,7 @@ public class High5 {
 //        list = lex.depthParser(list, categories.RESERVED_WORDS);
 
         System.out.println(rawOutput);
+        System.out.println("=================");
 
         for(String word : list) {
             System.out.println(word);
