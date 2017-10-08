@@ -1,6 +1,9 @@
-x = 0;
+int x = 10;
 
-if (x < 10 && 1 < 2) {
-    print("Valor de x");
+if (x >= 0 && 1 < 2) {
+    // Atualiza o valor de x
+    x = x - 1;
+
+    print("Valor atual de x");
     print(x);
 }

@@ -1,4 +1,4 @@
-package com.high5.util;
+package com.high5.model;
 
 public class Token {
     private String key;
