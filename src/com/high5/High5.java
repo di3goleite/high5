@@ -29,6 +29,8 @@ public class High5 {
         list = lex.parser(list, categories.LOGICAL_OPERATORS);
         list = lex.parser(list, categories.RESERVED_WORDS);
 
+        list = lex.bandAid(list);
+
         System.out.println(rawOutput);
         System.out.println("=================");
 

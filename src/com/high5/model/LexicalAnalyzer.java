@@ -46,4 +46,26 @@ public class LexicalAnalyzer {
         return list;
     }
 
+    public LinkedList<String> bandAid(LinkedList<String> list) {
+        boolean shouldBeFixed = false;
+
+        for(int i = 0; i < list.size(); i++) {
+            if(i < list.size() - 1) {
+                if(list.get(i).equals("pr") && list.get(i + 1).equals("int")) {
+                    shouldBeFixed = true;
+                }
+            }
+
+            if(shouldBeFixed) {
+                list.add(i, list.get(i) + list.get(i + 1));
+                list.remove(i + 1);
+                list.remove(i + 1);
+
+                shouldBeFixed = false;
+            }
+        }
+
+        return list;
+    }
+
 }
