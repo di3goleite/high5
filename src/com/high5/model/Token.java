@@ -54,8 +54,14 @@ public class Token {
                 categoryFound = false;
                 classifiedList.add(token);
             } else {
-                // If not category should be an identifier
-                token = this.generate(list.get(i), "Identifier");
+                // If not category should be a digit or identifier
+                if(list.get(i).matches("\\d+")) {
+                   token = "Digit";
+                } else {
+                    token = "Identifier";
+                }
+
+                token = this.generate(list.get(i), token);
                 classifiedList.add(token);
             }
         }
