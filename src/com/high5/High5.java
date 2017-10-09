@@ -5,9 +5,7 @@ import com.high5.model.LexicalAnalyzer;
 import com.high5.util.File;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
 
 public class High5 {
@@ -21,12 +19,15 @@ public class High5 {
         Categories categories = new Categories();
 
         StringBuilder rawOutput = lex.removeSpaces(output);
-        LinkedList<String> list = lex.parser(rawOutput, categories.DELIMITERS);
 
-        list = lex.depthParser(list, categories.ARITHMETIC_OPERATORS);
-//        list = lex.depthParser(list, categories.RELATIONAL_OPERATORS);
-//        list = lex.depthParser(list, categories.LOGICAL_OPERATORS);
-//        list = lex.depthParser(list, categories.RESERVED_WORDS);
+        LinkedList<String> list = new LinkedList();
+        list.add(rawOutput.toString());
+
+        list = lex.parser(list, categories.DELIMITERS);
+        list = lex.parser(list, categories.ARITHMETIC_OPERATORS);
+        list = lex.parser(list, categories.RELATIONAL_OPERATORS);
+        list = lex.parser(list, categories.LOGICAL_OPERATORS);
+        list = lex.parser(list, categories.RESERVED_WORDS);
 
         System.out.println(rawOutput);
         System.out.println("=================");

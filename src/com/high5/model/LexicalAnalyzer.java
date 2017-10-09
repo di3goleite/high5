@@ -2,6 +2,7 @@ package com.high5.model;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.regex.Pattern;
 
 public class LexicalAnalyzer {
 
@@ -15,63 +16,31 @@ public class LexicalAnalyzer {
         return rawOutput;
     }
 
-    public LinkedList<String> parser(StringBuilder rawOutput, String[] category) {
-        LinkedList<String> list = new LinkedList();
+    public LinkedList<String> parser(LinkedList<String> list, String[] category) {
+        String[] parts;
+        String pattern;
 
-        StringBuilder lexeme = new StringBuilder();
-        String currentDelimiter = "";
-
-        boolean delimiterFound = false;
-
-        for(char character : rawOutput.toString().toCharArray()) {
-            for(String delimiter : category) {
-                if(delimiter.charAt(0) == character) {
-                    delimiterFound = true;
-                    currentDelimiter = delimiter;
-                    break;
-                }
-            }
-
-            if(!delimiterFound) {
-                lexeme.append(character);
-            } else {
-                if(lexeme.length() > 0) {
-                    list.add(lexeme.toString());
-                }
-
-                list.add(currentDelimiter);
-                lexeme.setLength(0);
-
-                delimiterFound = false;
-                currentDelimiter = "";
-            }
-        }
-
-        if(lexeme.length() > 0) {
-            list.add(lexeme.toString());
-            lexeme.setLength(0);
-        }
-
-        return list;
-    }
-
-    public LinkedList<String> depthParser(LinkedList<String> list, String[] category) {
-        LinkedList<String> tempList;
         int listSize = list.size();
 
-        for(int i = 0; i < listSize ; i++) {
-            tempList = this.parser(new StringBuilder(list.get(i)), category);
+        for(int i = 0; i < category.length; i++) {
 
-            if(tempList.size() > 1) {
-                list.remove(i);
+            for(int j = 0; j < listSize; j++) {
 
-                for(int j = 0; j < tempList.size(); j++) {
-                    list.add(i + j, tempList.get(j));
+                pattern = "((?<=" + category[i] + ")|(?=" + category[i] + "))";
+                parts = list.get(j).split(pattern);
+
+                if(parts.length > 1) {
+                    list.remove(j);
+
+                    for(int k = 0; k < parts.length; k++) {
+                        list.add(j + k, parts[k]);
+                    }
+
                 }
 
-                i = i + tempList.size() - 1;
-                listSize = listSize + tempList.size() - 1;
             }
+
+            listSize = list.size();
         }
 
         return list;
