@@ -3,6 +3,6 @@ float y = 3.14;
 
 if (x >= 0 && 1 < 2) {
     x = x - 1;
-    print("Resultado: ");
+    print("Result: ");
     print(x * y);
 }

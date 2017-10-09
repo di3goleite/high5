@@ -6,11 +6,14 @@
 
 ```
 int x = 10;
+float y = 3.14;
 
-if (x >= 0 && 1 < 2 || 1 == 1) {
+if (x >= 0 && 1 < 2) {
     x = x - 1;
-    print(x);
+    print("Result: ");
+    print(x * y);
 }
+
 
 ```
 
@@ -22,6 +25,11 @@ if (x >= 0 && 1 < 2 || 1 == 1) {
 <=, Relational Operator>
 <10, Digit>
 <;, Delimiter>
+<float, Reserved Word>
+<y, Identifier>
+<=, Relational Operator>
+<3.14, Number>
+<;, Delimiter>
 <if, Reserved Word>
 <(, Delimiter>
 <x, Identifier>
@@ -31,10 +39,6 @@ if (x >= 0 && 1 < 2 || 1 == 1) {
 <1, Digit>
 <<, Relational Operator>
 <2, Digit>
-<||, Logic Operator>
-<1, Digit>
-<==, Identifier>
-<1, Digit>
 <), Delimiter>
 <{, Delimiter>
 <x, Identifier>
@@ -45,8 +49,15 @@ if (x >= 0 && 1 < 2 || 1 == 1) {
 <;, Delimiter>
 <print, Reserved Word>
 <(, Delimiter>
-<x, Identifier>
+<"Result, Identifier>
+<:, Delimiter>
+<", Identifier>
 <), Delimiter>
+<;, Delimiter>
+<print, Reserved Word>
+<(x, Identifier>
+<*, Arithmetic Operator>
+<y), Identifier>
 <;, Delimiter>
 <}, Delimiter>
 ```
