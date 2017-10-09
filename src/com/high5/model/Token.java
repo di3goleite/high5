@@ -56,7 +56,9 @@ public class Token {
             } else {
                 // If not category should be a digit or identifier
                 if(list.get(i).matches("\\d+")) {
-                   token = "Digit";
+                    token = "Digit";
+                } else if(list.get(i).matches("\\d{1,2}\\.\\d{1,2}")) {
+                    token = "Number";
                 } else {
                     token = "Identifier";
                 }
