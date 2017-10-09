@@ -2,6 +2,7 @@ package com.high5;
 
 import com.high5.model.Categories;
 import com.high5.model.LexicalAnalyzer;
+import com.high5.model.Token;
 import com.high5.util.File;
 
 import java.io.IOException;
@@ -21,6 +22,8 @@ public class High5 {
         StringBuilder rawOutput = lex.removeSpaces(output);
 
         LinkedList<String> list = new LinkedList();
+        Token token = new Token();
+
         list.add(rawOutput.toString());
 
         list = lex.parser(list, categories.DELIMITERS);
@@ -30,13 +33,10 @@ public class High5 {
         list = lex.parser(list, categories.RESERVED_WORDS);
 
         list = lex.bandAid(list);
-
-        System.out.println(rawOutput);
-        System.out.println("=================");
+        list = token.classify(list);
 
         for(String word : list) {
             System.out.println(word);
-            System.out.println("--------");
         }
 
         fileInstance.close();

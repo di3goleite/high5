@@ -1,8 +1,6 @@
 package com.high5.model;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.regex.Pattern;
 
 public class LexicalAnalyzer {
 
