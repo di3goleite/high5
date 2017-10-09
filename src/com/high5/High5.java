@@ -33,6 +33,7 @@ public class High5 {
         list = lex.parser(list, categories.RESERVED_WORDS);
 
         list = lex.bandAid(list);
+
         list = token.classify(list);
 
         for(String word : list) {
