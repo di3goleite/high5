@@ -51,7 +51,13 @@ public class LexicalAnalyzer {
 
         for(int i = 0; i < list.size(); i++) {
             if(i < list.size() - 1) {
-                if(list.get(i).equals("pr") && list.get(i + 1).equals("int")) {
+                if(
+                    (list.get(i).equals("pr") && list.get(i + 1).equals("int")) ||
+                    (list.get(i).equals("=") && list.get(i + 1).equals("=")) ||
+                    (list.get(i).equals("!") && list.get(i + 1).equals("=")) ||
+                    (list.get(i).equals("<") && list.get(i + 1).equals("=")) ||
+                    (list.get(i).equals(">") && list.get(i + 1).equals("="))
+                ) {
                     shouldBeFixed = true;
                 }
             }
