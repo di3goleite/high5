@@ -26,7 +26,7 @@ public class Token {
         for(int i = 0; i < list.size(); i++) {
             for(counter = 0; counter < categoriesList.size(); counter++) {
                 for(String category : categoriesList.get(counter)) {
-                    if(list.get(i).equals(category)) {
+                    if(list.get(i).matches(category)) {
                         categoryFound = true;
                         break;
                     }
