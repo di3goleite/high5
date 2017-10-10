@@ -54,9 +54,12 @@ public class Token {
                 categoryFound = false;
                 classifiedList.add(token);
             } else {
-                if(list.get(i).length() >= 3 && (list.get(i).charAt(0) == '/' && list.get(i).charAt(1) == '/') && (list.get(i).charAt(list.get(i).length() - 1) == '\n')) {
+                if(list.get(i).length() >= 2 && (list.get(i).charAt(0) == '/' && list.get(i).charAt(1) == '/')) {
                     token = "Line Comment";
-                } else if(list.get(i).length() >= 4 && (list.get(i).charAt(0) == '/' && list.get(i).charAt(1) == '*') && (list.get(i).charAt(list.get(i).length() - 2) == '*' && list.get(i).charAt(list.get(i).length() - 1) == '/')) {
+                } else if(list.get(i).length() >= 4 &&
+                    (list.get(i).charAt(0) == '/' && list.get(i).charAt(1) == '*') &&
+                    (list.get(i).charAt(list.get(i).length() - 2) == '*' && list.get(i).charAt(list.get(i).length() - 1) == '/')
+                ) {
                     token = "Block Comment";
                 } else if(list.get(i).length() >= 2 && (list.get(i).charAt(0) == '\"') && (list.get(i).charAt(list.get(i).length() - 1) == '\"')) {
                     token = "Characters Chain";

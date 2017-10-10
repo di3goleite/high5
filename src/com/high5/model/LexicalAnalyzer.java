@@ -8,9 +8,12 @@ public class LexicalAnalyzer {
         StringBuilder rawOutput = new StringBuilder();
 
         if(
-            ((output.charAt(0) == '/' && output.charAt(1) == '/') && (output.charAt(output.length() - 1) == '\n')) ||
-            ((output.charAt(0) == '/' && output.charAt(1) == '*') && (output.charAt(output.length() - 2) == '*' && output.charAt(output.length() - 1) == '/')) ||
-            ((output.charAt(0) == '\"') && (output.charAt(output.length() - 1) == '\"'))
+            (output.length() >= 2 && (output.charAt(0) == '/' && output.charAt(1) == '/')) ||
+            (output.length() >= 4 &&
+                (output.charAt(0) == '/' && output.charAt(1) == '*') &&
+                (output.charAt(output.length() - 2) == '*' && output.charAt(output.length() - 1) == '/')
+            ) ||
+            (output.length() >= 2 && (output.charAt(0) == '\"') && (output.charAt(output.length() - 1) == '\"'))
         ) {
             return output;
         } else {
@@ -30,47 +33,49 @@ public class LexicalAnalyzer {
         for(int i = 0; i < output.length(); i++) {
 
             // Comment
-            if(output.charAt(i) == '/') {
+            if(output.charAt(i) == '/' && i + 1 < output.length()) {
 
-                if(i + 1 < output.length()) {
+                // Line comment
+                if(output.charAt(i + 1) == '/') {
+                    list.add(str.toString());
+                    str.setLength(0);
 
-                    // Line comment
-                    if(output.charAt(i + 1) == '/') {
-                        list.add(str.toString());
-                        str.setLength(0);
+                    for(int j = i; j < output.length(); j++) {
 
-                        for(int j = i; j < output.length(); j++) {
+                        if(output.charAt(j) == '\n') {
+                            list.add(str.toString());
+
+                            str.setLength(0);
+                            i = j;
+
+                            break;
+                        } else {
                             str.append(output.charAt(j));
-
-                            if(output.charAt(j) == '\n') {
-//                                str.deleteCharAt(str.length() - 1);
-                                list.add(str.toString());
-                                str.setLength(0);
-                                i = j;
-                                break;
-                            }
-
                         }
 
-                    // Block comment
-                    } else if(output.charAt(i + 1) == '*') {
-                        list.add(str.toString());
-                        str.setLength(0);
+                    }
 
-                        for(int j = i; j < output.length(); j++) {
+                // Block comment
+                } else if(output.charAt(i + 1) == '*') {
+                    list.add(str.toString());
+                    str.setLength(0);
+
+                    str.append(output.charAt(i));
+                    str.append(output.charAt(i + 1));
+
+                    for(int j = i + 2; j < output.length(); j++) {
+
+                        if(j + 1 < output.length() && output.charAt(j) == '*' && output.charAt(j + 1) == '/') {
                             str.append(output.charAt(j));
+                            str.append(output.charAt(j + 1));
 
-                            if(
-                                (j + 1 < output.length()) &&
-                                (output.charAt(j) == '*' && output.charAt(j + 1) == '/')
-                            ) {
-                                str.append(output.charAt(j + 1));
-                                list.add(str.toString());
-                                str.setLength(0);
-                                i = j + 1;
-                                break;
-                            }
+                            list.add(str.toString());
+                            str.setLength(0);
+                            i = j + 2;
 
+                            break;
+                        } else {
+                            str.append(output.charAt(j));
                         }
 
                     }
@@ -79,27 +84,30 @@ public class LexicalAnalyzer {
 
             // Characters chain
             } else if(output.charAt(i) == '\"') {
-                boolean firstQuoteDetected = true;
-
                 list.add(str.toString());
                 str.setLength(0);
 
-                for(int j = i; j < output.length(); j++) {
-                    str.append(output.charAt(j));
+                str.append(output.charAt(i));
 
-                    if(!firstQuoteDetected && output.charAt(j) == '\"') {
+                for(int j = i + 1; j < output.length(); j++) {
+
+                    if(output.charAt(j) == '\"') {
+                        str.append(output.charAt(j));
+
                         list.add(str.toString());
                         str.setLength(0);
-                        i = j;
+
+                        i = j + 1;
                         break;
                     } else {
-                        firstQuoteDetected = false;
+                        str.append(output.charAt(j));
                     }
 
                 }
-            } else {
-                str.append(output.charAt(i));
+
             }
+
+            str.append(output.charAt(i));
         }
 
         list.add(str.toString());
@@ -127,8 +135,11 @@ public class LexicalAnalyzer {
             for(int j = 0; j < listSize; j++) {
 
                 if(!(
-                    (list.get(j).length() >= 3 && (list.get(j).charAt(0) == '/' && list.get(j).charAt(1) == '/') && (list.get(j).charAt(list.get(j).length() - 1) == '\n')) ||
-                    (list.get(j).length() >= 4 && (list.get(j).charAt(0) == '/' && list.get(j).charAt(1) == '*') && (list.get(j).charAt(list.get(j).length() - 2) == '*' && list.get(j).charAt(list.get(j).length() - 1) == '/')) ||
+                    (list.get(j).length() >= 2 && (list.get(j).charAt(0) == '/' && list.get(j).charAt(1) == '/')) ||
+                    (list.get(j).length() >= 4 &&
+                        (list.get(j).charAt(0) == '/' && list.get(j).charAt(1) == '*') &&
+                        (list.get(j).charAt(list.get(j).length() - 2) == '*' && list.get(j).charAt(list.get(j).length() - 1) == '/')
+                    ) ||
                     (list.get(j).length() >= 2 && (list.get(j).charAt(0) == '\"') && (list.get(j).charAt(list.get(j).length() - 1) == '\"'))
                 )) {
                     pattern = "((?<=" + category[i] + ")|(?=" + category[i] + "))";
