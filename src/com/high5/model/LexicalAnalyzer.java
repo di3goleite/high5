@@ -97,7 +97,7 @@ public class LexicalAnalyzer {
                         list.add(str.toString());
                         str.setLength(0);
 
-                        i = j + 1;
+                        i = j;
                         break;
                     } else {
                         str.append(output.charAt(j));
@@ -128,11 +128,9 @@ public class LexicalAnalyzer {
         String[] parts;
         String pattern;
 
-        int listSize = list.size();
-
         for(int i = 0; i < category.length; i++) {
 
-            for(int j = 0; j < listSize; j++) {
+            for(int j = 0; j < list.size(); j++) {
 
                 if(!(
                     (list.get(j).length() >= 2 && (list.get(j).charAt(0) == '/' && list.get(j).charAt(1) == '/')) ||
@@ -158,7 +156,6 @@ public class LexicalAnalyzer {
 
             }
 
-            listSize = list.size();
         }
 
         return list;
