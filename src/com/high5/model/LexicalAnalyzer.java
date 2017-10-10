@@ -43,6 +43,7 @@ public class LexicalAnalyzer {
                             str.append(output.charAt(j));
 
                             if(output.charAt(j) == '\n') {
+//                                str.deleteCharAt(str.length() - 1);
                                 list.add(str.toString());
                                 str.setLength(0);
                                 i = j;
@@ -105,7 +106,11 @@ public class LexicalAnalyzer {
         str.setLength(0);
 
         for(String rawStr : list) {
-            filteredList.add(this.removeSpaces(rawStr));
+            rawStr = this.removeSpaces(rawStr);
+
+            if(rawStr.length() > 0) {
+                filteredList.add(rawStr);
+            }
         }
 
         return filteredList;
@@ -122,11 +127,10 @@ public class LexicalAnalyzer {
             for(int j = 0; j < listSize; j++) {
 
                 if(!(
-                    ((list.get(j).charAt(0) == '/' && list.get(j).charAt(1) == '/') && (list.get(j).charAt(list.get(j).length() - 1) == '\n')) ||
-                    ((list.get(j).charAt(0) == '/' && list.get(j).charAt(1) == '*') && (list.get(j).charAt(list.get(j).length() - 2) == '*' && list.get(j).charAt(list.get(j).length() - 1) == '/')) ||
-                    ((list.get(j).charAt(0) == '\"') && (list.get(j).charAt(list.get(j).length() - 1) == '\"'))
+                    (list.get(j).length() >= 3 && (list.get(j).charAt(0) == '/' && list.get(j).charAt(1) == '/') && (list.get(j).charAt(list.get(j).length() - 1) == '\n')) ||
+                    (list.get(j).length() >= 4 && (list.get(j).charAt(0) == '/' && list.get(j).charAt(1) == '*') && (list.get(j).charAt(list.get(j).length() - 2) == '*' && list.get(j).charAt(list.get(j).length() - 1) == '/')) ||
+                    (list.get(j).length() >= 2 && (list.get(j).charAt(0) == '\"') && (list.get(j).charAt(list.get(j).length() - 1) == '\"'))
                 )) {
-
                     pattern = "((?<=" + category[i] + ")|(?=" + category[i] + "))";
                     parts = list.get(j).split(pattern);
 
