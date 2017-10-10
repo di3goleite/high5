@@ -16,7 +16,6 @@ public class High5 {
         final String PATH = "./entrada";
         final String INPUT_FILE = "program.h5";
         final String OUTPUT_FILE = "program.out";
-        final String ERRORS_FILE = "program.err";
 
         // Read the dot h5 program
         File file = new File();
@@ -54,7 +53,6 @@ public class High5 {
 
         // Write output and errors files
         file.write(PATH, OUTPUT_FILE, list);
-        file.write(PATH, ERRORS_FILE, errorsList);
 
     }
 
