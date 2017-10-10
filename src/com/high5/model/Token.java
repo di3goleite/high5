@@ -63,7 +63,7 @@ public class Token {
                     token = "Block Comment";
                 } else if(list.get(i).length() >= 2 && (list.get(i).charAt(0) == '\"') && (list.get(i).charAt(list.get(i).length() - 1) == '\"')) {
                     token = "Characters Chain";
-                } else if(list.get(i).matches("\\d{1,2}\\.\\d{1,2}")) {
+                } else if(list.get(i).matches("((\\d)+(\\.\\d+)?)")) {
                     token = "Number";
                 } else {
                     token = "Identifier";
