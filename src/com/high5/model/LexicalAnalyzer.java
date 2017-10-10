@@ -105,9 +105,9 @@ public class LexicalAnalyzer {
 
                 }
 
+            } else {
+                str.append(output.charAt(i));
             }
-
-            str.append(output.charAt(i));
         }
 
         list.add(str.toString());
