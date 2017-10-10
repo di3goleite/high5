@@ -14,7 +14,7 @@ public class High5 {
     public static void main(String[] args) throws IOException {
         // Read the dot h5 program
         File file = new File();
-        Scanner fileInstance = file.open("entrada.txt");
+        Scanner fileInstance = file.open("entrada/program.h5");
         String output = file.read(fileInstance);
 
         // Create important object references

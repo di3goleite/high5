@@ -26,7 +26,7 @@ if (x >= 0 && 1 < 2) {
 <int, Reserved Word>
 <x, Identifier>
 <=, Relational Operator>
-<10, Identifier>
+<10, Number>
 <;, Delimiter>
 <float, Reserved Word>
 <y, Identifier>
@@ -40,28 +40,31 @@ if (x >= 0 && 1 < 2) {
 <(, Delimiter>
 <x, Identifier>
 <>=, Relational Operator>
-<0, Identifier>
+<0, Number>
 <&&, Logic Operator>
-<1, Identifier>
+<1, Number>
 <<, Relational Operator>
-<2, Identifier>
+<2, Number>
 <), Delimiter>
 <{, Delimiter>
 <x, Identifier>
 <=, Relational Operator>
 <x, Identifier>
 <-, Arithmetic Operator>
-<1, Identifier>
+<1, Number>
 <;, Delimiter>
-<// Print the result
-, Line Comment>
+<// Print the result, Line Comment>
 <print, Reserved Word>
 <(, Delimiter>
 <"Result: ", Characters Chain>
-<);, Identifier>
+<), Delimiter>
+<;, Delimiter>
 <print, Reserved Word>
-<(x, Identifier>
+<(, Delimiter>
+<x, Identifier>
 <*, Arithmetic Operator>
-<y);, Identifier>
+<y, Identifier>
+<), Delimiter>
+<;, Delimiter>
 <}, Delimiter>
 ```
