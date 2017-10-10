@@ -14,11 +14,13 @@ public class High5 {
     public static void main(String[] args) throws IOException {
         // Input dot h5 file program
         final String PATH = "./entrada";
-        final String FILENAME = "program.h5";
+        final String INPUT_FILE = "program.h5";
+        final String OUTPUT_FILE = "program.out";
+        final String ERRORS_FILE = "program.err";
 
         // Read the dot h5 program
         File file = new File();
-        Scanner fileInstance = file.open(PATH, FILENAME);
+        Scanner fileInstance = file.open(PATH, INPUT_FILE);
         String output = file.read(fileInstance);
 
         // Create important object references
@@ -30,6 +32,7 @@ public class High5 {
         // and splitting the raw string by raw comments
         // block comments and characters chain
         LinkedList<String> list = lex.filter(output);
+        LinkedList<String> errorsList = new LinkedList();
 
         // Parser the splitted program by delimiters
         list = lex.parser(list, categories.DELIMITERS);
@@ -49,7 +52,9 @@ public class High5 {
             System.out.println(word);
         }
 
-        fileInstance.close();
+        // Write output and errors files
+        file.write(PATH, OUTPUT_FILE, list);
+        file.write(PATH, ERRORS_FILE, errorsList);
 
     }
 
