@@ -1,8 +1,13 @@
 int x = 10;
 float y = 3.14;
 
+/*
+    This is a block comment
+*/
 if (x >= 0 && 1 < 2) {
     x = x - 1;
+
+    // Print the result
     print("Result: ");
     print(x * y);
 }

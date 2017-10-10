@@ -54,9 +54,12 @@ public class Token {
                 categoryFound = false;
                 classifiedList.add(token);
             } else {
-                // If not category should be a digit or identifier
-                if(list.get(i).matches("\\d+")) {
-                    token = "Digit";
+                if((list.get(i).charAt(0) == '/' && list.get(i).charAt(1) == '/') && (list.get(i).charAt(list.get(i).length() - 1) == '\n')) {
+                    token = "Line Comment";
+                } else if((list.get(i).charAt(0) == '/' && list.get(i).charAt(1) == '*') && (list.get(i).charAt(list.get(i).length() - 2) == '*' && list.get(i).charAt(list.get(i).length() - 1) == '/')) {
+                    token = "Block Comment";
+                } else if((list.get(i).charAt(0) == '\"') && (list.get(i).charAt(list.get(i).length() - 1) == '\"')) {
+                    token = "Characters Chain";
                 } else if(list.get(i).matches("\\d{1,2}\\.\\d{1,2}")) {
                     token = "Number";
                 } else {

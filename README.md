@@ -8,13 +8,16 @@
 int x = 10;
 float y = 3.14;
 
+/*
+    This is a block comment
+*/
 if (x >= 0 && 1 < 2) {
     x = x - 1;
+
+    // Print the result
     print("Result: ");
     print(x * y);
 }
-
-
 ```
 
 ## Output
@@ -23,41 +26,42 @@ if (x >= 0 && 1 < 2) {
 <int, Reserved Word>
 <x, Identifier>
 <=, Relational Operator>
-<10, Digit>
+<10, Identifier>
 <;, Delimiter>
 <float, Reserved Word>
 <y, Identifier>
 <=, Relational Operator>
 <3.14, Number>
 <;, Delimiter>
+</*
+    This is a block comment
+*/, Block Comment>
 <if, Reserved Word>
 <(, Delimiter>
 <x, Identifier>
 <>=, Relational Operator>
-<0, Digit>
+<0, Identifier>
 <&&, Logic Operator>
-<1, Digit>
+<1, Identifier>
 <<, Relational Operator>
-<2, Digit>
+<2, Identifier>
 <), Delimiter>
 <{, Delimiter>
 <x, Identifier>
 <=, Relational Operator>
 <x, Identifier>
 <-, Arithmetic Operator>
-<1, Digit>
+<1, Identifier>
 <;, Delimiter>
+<// Print the result
+, Line Comment>
 <print, Reserved Word>
 <(, Delimiter>
-<"Result, Identifier>
-<:, Delimiter>
-<", Identifier>
-<), Delimiter>
-<;, Delimiter>
+<"Result: ", Characters Chain>
+<);, Identifier>
 <print, Reserved Word>
 <(x, Identifier>
 <*, Arithmetic Operator>
-<y), Identifier>
-<;, Delimiter>
+<y);, Identifier>
 <}, Delimiter>
 ```
