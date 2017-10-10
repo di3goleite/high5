@@ -12,9 +12,13 @@ import java.util.Scanner;
 public class High5 {
 
     public static void main(String[] args) throws IOException {
+        // Input dot h5 file program
+        final String PATH = "./entrada";
+        final String FILENAME = "program.h5";
+
         // Read the dot h5 program
         File file = new File();
-        Scanner fileInstance = file.open("entrada/program.h5");
+        Scanner fileInstance = file.open(PATH, FILENAME);
         String output = file.read(fileInstance);
 
         // Create important object references
@@ -35,10 +39,10 @@ public class High5 {
         list = lex.parser(list, categories.RESERVED_WORDS);
 
         // Check language rules
-        list = lex.bandAid(list);
+        list = lex.applyRules(list);
 
         // Classify each token
-        list = token.classify(list);
+        list = token.classification(list);
 
         // Show the tokenized output
         for(String word : list) {
@@ -46,6 +50,7 @@ public class High5 {
         }
 
         fileInstance.close();
+
     }
 
 }

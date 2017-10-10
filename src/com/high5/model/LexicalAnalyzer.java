@@ -161,7 +161,7 @@ public class LexicalAnalyzer {
         return list;
     }
 
-    public LinkedList<String> bandAid(LinkedList<String> list) {
+    public LinkedList<String> applyRules(LinkedList<String> list) {
         boolean shouldBeFixed = false;
 
         for(int i = 0; i < list.size(); i++) {

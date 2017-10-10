@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class File {
 
-    public Scanner open(String path) throws FileNotFoundException {
-        return (new Scanner(new FileReader(path))).useDelimiter("//z");
+    public Scanner open(String path, String name) throws FileNotFoundException {
+        return (new Scanner(new FileReader(path + '/' + name))).useDelimiter("//z");
     }
 
     public String read(Scanner file) {

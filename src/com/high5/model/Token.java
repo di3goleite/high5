@@ -8,7 +8,7 @@ public class Token {
         return "<" + key + ", " + value + ">";
     }
 
-    public LinkedList<String> classify(LinkedList<String> list) {
+    public LinkedList<String> classification(LinkedList<String> list) {
         String token = new String();
         boolean categoryFound = false;
         int counter;
