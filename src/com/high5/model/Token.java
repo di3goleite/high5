@@ -66,7 +66,11 @@ public class Token {
                 } else if(list.get(i).matches("((\\d)+(\\.\\d+)?)")) {
                     token = "Number";
                 } else {
-                    token = "Identifier";
+                    if(list.get(i).matches("([0-9_]+).*")) {
+                        token = "(Identifier)_Malformed";
+                    } else {
+                        token = "Identifier";
+                    }
                 }
 
                 token = this.generate(list.get(i), token);
