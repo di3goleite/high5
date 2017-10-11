@@ -31,7 +31,6 @@ public class High5 {
         // and splitting the raw string by raw comments
         // block comments and characters chain
         LinkedList<String> list = lex.filter(output);
-        LinkedList<String> errorsList = new LinkedList();
 
         // Parser the splitted program by delimiters
         list = lex.parser(list, categories.DELIMITERS);
