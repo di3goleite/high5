@@ -5,8 +5,9 @@
 ## Input
 
 ```
-int x = 10;
-float y = 3.14;
+int 1x = 10;
+float _y = 3.14;
+int x_y = 9;
 
 /*
     This is a block comment
@@ -32,6 +33,24 @@ if (x >= 0 && 1 < 2) {
 <y, Identifier>
 <=, Relational Operator>
 <3.14, Number>
+<;, Delimiter>
+</*
+    This is a block comment
+*/, Block Comment>
+<int, Reserved Word>
+<1x, (Identifier)_Malformed>
+<=, Relational Operator>
+<10, Number>
+<;, Delimiter>
+<float, Reserved Word>
+<_y, (Identifier)_Malformed>
+<=, Relational Operator>
+<3.14, Number>
+<;, Delimiter>
+<int, Reserved Word>
+<x_y, Identifier>
+<=, Relational Operator>
+<9, Number>
 <;, Delimiter>
 </*
     This is a block comment

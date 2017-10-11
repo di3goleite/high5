@@ -1,5 +1,6 @@
-int x = 10;
-float y = 3.14;
+int 1x = 10;
+float _y = 3.14;
+int x_y = 9;
 
 /*
     This is a block comment

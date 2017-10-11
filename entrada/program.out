@@ -1,12 +1,17 @@
 <int, Reserved Word>
-<x, Identifier>
+<1x, (Identifier)_Malformed>
 <=, Relational Operator>
 <10, Number>
 <;, Delimiter>
 <float, Reserved Word>
-<y, Identifier>
+<_y, (Identifier)_Malformed>
 <=, Relational Operator>
 <3.14, Number>
+<;, Delimiter>
+<int, Reserved Word>
+<x_y, Identifier>
+<=, Relational Operator>
+<9, Number>
 <;, Delimiter>
 </*
     This is a block comment
